@@ -10,6 +10,7 @@
       Home page
     </NuxtLink>
   </v-app>
+  
 </template>
 
 <script>
