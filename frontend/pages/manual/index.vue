@@ -57,7 +57,7 @@
             min-width="100%"
             max-width="100%"
           >
-            <v-card-title>asdfasdfasdf {{ value.content[2].title }}</v-card-title>
+            <v-card-title>{{ value.content[2].title }}</v-card-title>
             <v-card-text>
               <p>{{ shorten(value.content[2].text) }}</p>
             </v-card-text>
@@ -100,7 +100,7 @@
         </v-col>
       </v-row>
       <center><p>
-        <a :href="preText + key">click for more</a>
+        <a :href="preText + value.title">click for more</a>
       </p></center>
       
     </div>
