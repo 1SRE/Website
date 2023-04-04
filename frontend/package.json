@@ -25,6 +25,7 @@
     "vuetify": "^2.6.10"
   },
   "devDependencies": {
+    "@nuxtjs/fontaine": "^0.2.4",
     "@nuxtjs/vuetify": "^1.12.3"
   }
 }
