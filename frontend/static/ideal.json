@@ -1,0 +1,57 @@
+{
+    "id": 0,
+    "root": [
+        {
+            "id": 1,
+            "type": "folder",
+            "title": "01. Introduction",
+            "content": [
+                {
+                    "id": 1,
+                    "type": "text",
+                    "title": "01. What is 1SRE?.md",
+                    "text": "all the text goes here"
+                },
+                {
+                    "id": 2,
+                    "type": "text",
+                    "title": "02. Where to get started?.md",
+                    "text": "all the text goes here"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "type": "folder",
+            "title": "02. Operating Systems",
+            "content": [
+                {
+                    "id": 1,
+                    "type": "folder",
+                    "title": "01. Linux",
+                    "content": [
+                        {
+                            "id": 1,
+                            "type": "folder",
+                            "title": "01. RHEL",
+                            "content": [
+                                {
+                                    "id": 1,
+                                    "type": "text",
+                                    "title": "01. Why?.md",
+                                    "text": "stuff"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": 2,
+                    "type": "text",
+                    "title": "01. Something",
+                    "text": "text"
+                }
+            ]
+        }
+    ]
+}
