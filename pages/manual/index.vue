@@ -1,107 +1,30 @@
 <template>
   <v-container>
     <!-- <h1 v-for="(value, key) in data" :key="(value, key)">{{ key }}</h1> -->
-    <div v-for="(value, key) in data" :key="(value, key)">
-      <h1>{{ value.title }}</h1>
-      <v-row justify="center" align="center">
-        <v-col align-self="stretch" cols="auto" sm="3" md="3">
-          <v-card
-            @click="route(value.title, value.content[0])"
-            height="100%"
-            min-width="100%"
-            max-width="100%"
-          >
-            <v-card-title>{{ value.content[0].title }}</v-card-title>
-            <v-card-text>
-              <p>{{ shorten(value.content[0].text) }}</p>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col
-          v-if="value.content.length >= 2"
-          align-self="stretch"
-          cols="auto"
-          sm="3"
-          md="3"
-        >
-          <v-card
-            @click="route(value.title, value.content[1])"
-            height="100%"
-            min-width="100%"
-            max-width="100%"
-          >
-            <v-card-title>{{ value.content[1].title }}</v-card-title>
-            <v-card-text>
-              <p>{{ shorten(value.content[1].text) }}</p>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col v-else>
-          <v-skeleton-loader
-            type="card"
-            height="100%"
-            min-width="100%"
-            max-width="100%"
-          ></v-skeleton-loader>
-        </v-col>
-        <v-col
-          v-if="value.content.length >= 3"
-          align-self="stretch"
-          cols="auto"
-          sm="3"
-          md="3"
-        >
-          <v-card
-            @click="route(value.title, value.content[2])"
-            height="100%"
-            min-width="100%"
-            max-width="100%"
-          >
-            <v-card-title>{{ value.content[2].title }}</v-card-title>
-            <v-card-text>
-              <p>{{ shorten(value.content[2].text) }}</p>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col v-else>
-          <v-skeleton-loader
-            type="card"
-            height="100%"
-            min-width="100%"
-            max-width="100%"
-          ></v-skeleton-loader>
-        </v-col>
-        <v-col
-          v-if="value.content.length >= 4"
-          align-self="stretch"
-          cols="auto"
-          sm="3"
-          md="3"
-        >
-          <v-card
-            @click="route(value.title, value.content[3])"
-            height="100%"
-            min-width="100%"
-            max-width="100%"
-          >
-            <v-card-title>{{ value.content[3].title }}</v-card-title>
-            <v-card-text>
-              <p>{{ shorten(value.content[3].text) }}</p>
-            </v-card-text>
-          </v-card>
-        </v-col>
-        <v-col v-else>
-          <v-skeleton-loader
-            type="card"
-            height="100%"
-            min-width="100%"
-            max-width="100%"
-          ></v-skeleton-loader>
-        </v-col>
+    <div v-for="value in data" :key="value">
+      <template v-if="value.content.length >= 1">
+      <h1><a :href="preText + value.title">{{ value.title.split(". ")[1] }}</a></h1>
+      <v-row justify="left" align="center">
+        <template v-for="(obj, key) in value.content">
+          <template v-if="key <= 3">
+            <v-col align-self="stretch" cols="auto" sm="3" md="3">
+              <v-card
+                @click="route(value.title, obj.title)"
+                height="100%"
+                min-width="100%"
+                max-width="100%"
+              >
+                <v-card-title>{{ obj.title }}</v-card-title>
+                <v-card-text>
+                  <p>{{ shorten(obj.text) }}</p>
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </template>
+       </template>
       </v-row>
-      <center><p>
-        <a :href="preText + value.title">click for more</a>
-      </p></center>
+      </template>
+      
       
     </div>
   </v-container>
@@ -135,8 +58,7 @@ export default {
         );
     },
     route(key, value) {
-      if (value.text === undefined) return window.location.href = "/manual/" + key;
-      else return window.location.href = "/manual/" + key + "/" + value.title;
+      return window.location.href = "/manual/" + key + "/" + value;
     },
   },
   mounted() {},
