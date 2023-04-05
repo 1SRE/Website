@@ -11,25 +11,14 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="auto" sm="12">
-        <center>
-          <iframe
-            width="1280"
-            height="518"
-            src="https://www.youtube.com/embed/RaLZCjA2x24"
-            title="1SRE Pre-Launch"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        </center>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="auto" sm="12">
-        <center>
-          <v-btn to="/manual" large elevation="2">Manualffff</v-btn>
-        </center>
+      <v-col class="video-container" cols="auto" sm="12">
+        <iframe
+          src="https://www.youtube.com/embed/RaLZCjA2x24"
+          title="Prelaunch Video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
       </v-col>
     </v-row>
   </v-container>
@@ -42,7 +31,16 @@ export default {
 </script>
 
 <style>
-.a {
-  
+.video-container {
+  position: relative;
+  padding-bottom: 10%; /* 16:9 */
+  display: block;
+  margin: auto;
+  height: "100%";
+}
+.video-container iframe {
+  position: relative;
+  width: 100%;
+  height: 80vh;
 }
 </style>

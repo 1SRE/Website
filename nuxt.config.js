@@ -11,8 +11,15 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' }
+      { name: "keywords", content: "linux, networking, systems, platform, education, learn, student, students, professional, professionals, 1sre"},
+      { hid: 'description', name: 'description', content: 'Your one stop-shop to learn anything and everything about Linux, networking, and other system concepts for free*' },
+      { name: 'format-detection', content: 'telephone=no' },
+      { property: "og:title", name: 'title', content: '1SRE' },
+      { property: "og:url", name: 'url', content: 'https://1sre.io' },
+      { property: "og:image", name: 'image', content: 'https://1sre.io/logo.png' },
+      { property: "og:theme-color", name: 'theme-color', content: '#00c180' },
+      
+
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }

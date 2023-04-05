@@ -1,13 +1,20 @@
 <template>
   <v-app dark>
+    <v-img
+      class="mx-2"
+      src="../static/logo.png"
+      max-height="40"
+      max-width="40"
+      contain
+    ></v-img>
     <v-app-bar fixed dense app>
       <nuxt-link to="/">
         <v-toolbar-title>1SRE</v-toolbar-title>
       </nuxt-link>
       <v-spacer />
       <v-toolbar-items>
-      <v-btn text to="manual">Manual</v-btn>
-      <v-btn text color="success">Login</v-btn>
+        <v-btn text to="manual">Manual</v-btn>
+        <v-btn text color="success">Login</v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-main>
