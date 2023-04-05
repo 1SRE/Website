@@ -4,7 +4,7 @@
       <v-col cols="auto" sm="12">
         <center>
           <h1>
-            Your one stop-shop to learn anything and everything about Linux,
+            Your one-stop-shop to learn anything and everything about Linux,
             networking, and other system concepts for free*
           </h1>
         </center>
