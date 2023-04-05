@@ -4,9 +4,9 @@
     <div v-for="value in data" :key="value">
       <template v-if="value.content.length >= 1">
       <h1><a :href="preText + value.title">{{ value.title.split(". ")[1] }}</a></h1>
-      <v-row justify="left" align="center">
-        <template v-for="(obj, key) in value.content">
-          <template v-if="key <= 3">
+      <v-row >
+        <template v-for="(obj, num) in value.content">
+          <template v-if="num <= 3">
             <v-col align-self="stretch" cols="auto" sm="3" md="3">
               <v-card
                 @click="route(value.title, obj.title)"
