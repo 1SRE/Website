@@ -5,6 +5,7 @@
     <h1>{{ folderName }}</h1>
     <v-row justify="left" align="center">
       <v-col align-self="stretch" cols="auto" sm="3" md="3">
+        <!-- for loop cards -->
         <v-card height="100%" min-width="100%" max-width="100%">
           <v-card-title>asdf</v-card-title>
           <v-card-text>

@@ -7,7 +7,7 @@
         </v-sheet>
       </v-col>
       <v-col cols="12">
-        <v-sheet class="pa-16 text-h8"> </v-sheet>
+        <v-sheet class="pa-16 text-h8" id="articleText">If this text doesn't disappear, you visited a malformed URL...</v-sheet>
       </v-col>
       <v-col cols="12">
         <v-sheet class="pa-3">
@@ -20,48 +20,53 @@
 
 <script>
 import data from "../../../../static/manual.json";
+import showdown from "showdown";
 
 export default {
   name: "ArticlePage",
   data() {
     return {
       data: data,
-
     };
   },
   async asyncData({ params }) {
     const folder = params.innerFolder;
     const article = params.article;
-    console.log(article)
     return { folder, article };
   },
-  //   async asyncData({ params, redirect }) {
-  //     const mountains = await fetch(
-  //       'https://api.nuxtjs.dev/mountains'
-  //     ).then((res) => res.json())
-
-  //     const filteredMountain = mountains.find(
-  //       (el) =>
-  //         el.continent.toLowerCase() === params.continent &&
-  //         el.slug === params.mountain
-  //     )
-  //     if (filteredMountain) {
-  //       return {
-  //         continent: filteredMountain.continent,
-  //         mountain: filteredMountain.title
-  //       }
-  //     } else {
-  //       redirect('/')
-  //     }
-  //   },
   methods: {
-    injectCardText() {},
+    injectCardText(jsonObject) {
+      jsonObject.forEach((object) => {
+        if (object.hasOwnProperty("content")) {
+          object["content"].forEach((nestedObject) => {
+            this.injectCardText(object["content"]);
+          });
+        }
+        if (
+          object["title"] == this.article ||
+          object["title"] == this.article + "?" ||
+          object["title"] == this.article + "!"
+        ) {
+          if (object["type"] == "article") {
+            var converter = new showdown.Converter();
+            return (document.getElementById("articleText").innerHTML =
+              converter.makeHtml(object["text"]));
+          }
+        }
+      });
+      return undefined;
+    },
   },
   mounted() {
-
+    this.injectCardText(this.data);
   },
-  beforeMount() {
-  },
-  
+  beforeMount() {},
+  computed: {},
 };
 </script>
+
+<style>
+#articleText {
+  overflow: hidden;
+}
+</style>
