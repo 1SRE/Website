@@ -3,13 +3,13 @@
     <!-- <h1 v-for="(value, key) in data" :key="(value, key)">{{ key }}</h1> -->
 
     <h1>{{ folderName }}</h1>
-    <v-row justify="left" align="center">
-      <v-col align-self="stretch" cols="auto" sm="3" md="3">
-        <!-- for loop cards -->
-        <v-card height="100%" min-width="100%" max-width="100%">
-          <v-card-title>asdf</v-card-title>
+    <v-row align="center">
+      <!-- for loop cols -->
+      <v-col v-for="(value, key) in folderObjects.content" :key="(value, key)" align-self="stretch" cols="auto" sm="3" md="3">
+        <v-card @click="redirect(value.title)" height="100%" min-width="100%" max-width="100%">
+          <v-card-title>{{ value.title }}</v-card-title>
           <v-card-text>
-            <p>{{ shorten("alksdjfasdf") }}</p>
+            <p>{{ shorten(value.text) }}</p>
           </v-card-text>
         </v-card>
       </v-col>
@@ -26,10 +26,11 @@ export default {
   data() {
     return {
       data: data,
+      folderObjects: this.getContent(data),
     };
   },
   async asyncData({ params }) {
-    const folderName = params.innerFolder;
+    const folderName = params.innerFolder
     return { folderName };
   },
   methods: {
@@ -47,10 +48,23 @@ export default {
             .join(" ") + "..."
         );
     },
-    route(key, value) {
-      if (value.text === undefined)
-        return (window.location.href = "/manual/" + key);
-      else return (window.location.href = "/manual/" + key + "/" + value.title);
+    getContent(data) {
+      for (let i = 0; i < data.length; i++) {
+        const object = data[i];
+        if (object.hasOwnProperty("content")) {
+          for (let j = 0; j < object["content"].length; j++) {
+            const nestedObject = object["content"][j];
+            this.getContent(nestedObject);
+          }
+        }
+        if (object["title"] == this.$route.params.innerFolder) {
+          return object;
+        }
+      }
+    },
+    redirect(key, value) {
+      console.log(key)
+      return (window.location.href = "/manual/" + this.$route.params.innerFolder + "/" + key);
     },
   },
   mounted() {},
