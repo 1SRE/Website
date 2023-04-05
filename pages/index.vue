@@ -28,7 +28,7 @@
     <v-row>
       <v-col cols="auto" sm="12">
         <center>
-          <v-btn to="/manual" large elevation="2">Manual</v-btn>
+          <v-btn to="/manual" large elevation="2">Manualffff</v-btn>
         </center>
       </v-col>
     </v-row>
