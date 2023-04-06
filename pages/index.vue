@@ -13,7 +13,7 @@
     <v-row>
       <v-col class="video-container" cols="auto" sm="12">
         <iframe
-          src="https://www.youtube.com/embed/RaLZCjA2x24"
+          src="https://www.youtube.com/embed/Vd8oTsKknq4"
           title="Prelaunch Video"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
