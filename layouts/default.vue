@@ -13,6 +13,7 @@
       </nuxt-link>
       <v-spacer />
       <v-toolbar-items>
+        <v-btn text color="red" href="https://discord.gg/7Jv879QhKM">Discord</v-btn>
         <v-btn text to="manual">Manual</v-btn>
         <v-btn text color="success">Login</v-btn>
       </v-toolbar-items>
