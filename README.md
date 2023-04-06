@@ -1,9 +1,17 @@
 # Orchestration Stuff
-docker tag frontend:latest nishi7409/1sre
+`docker tag frontend:latest nishi7409/1sre`
 
-kubectl apply -f ./k8s/frontend.yaml
+`minikube start`
 
-kubectl port-forward frontend-deployment-54f7c6c899-ljfb4 3000:3000
+`minikube dashboard`
+
+`minikube stop`
+
+`minikube delete`
+
+`kubectl apply -f ./k8s/frontend.yaml`
+
+`kubectl port-forward frontend-deployment-54f7c6c899-ljfb4 3000:3000`
 
 # Nuxt Stuff
 
