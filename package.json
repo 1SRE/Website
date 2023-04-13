@@ -17,6 +17,8 @@
   "dependencies": {
     "@contentful/rich-text-from-markdown": "^15.16.4",
     "@nuxt/content": "^1.0.0",
+    "@nuxtjs/auth-next": "5.0.0-1667386184.dfbbb54",
+    "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.25.3",
     "html-to-text": "^9.0.5",
     "markdown-to-text": "^0.1.1",

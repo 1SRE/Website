@@ -13,9 +13,13 @@
       </nuxt-link>
       <v-spacer />
       <v-toolbar-items>
-        <v-btn text color="red" href="https://discord.gg/7Jv879QhKM">Discord</v-btn>
+        <v-btn text color="red" href="https://discord.gg/7Jv879QhKM"
+          >Discord</v-btn
+        >
         <v-btn text to="manual">Manual</v-btn>
-        <v-btn text to="auth" color="success">Login</v-btn>
+
+        <v-btn v-if="$auth.loggedIn" text to="logout">{{ $auth.user.email }}</v-btn>
+        <v-btn v-else text to="login" color="success">Login</v-btn>
       </v-toolbar-items>
     </v-app-bar>
     <v-main>
@@ -39,3 +43,29 @@ export default {
   },
 };
 </script>
+
+<style>
+a:link {
+  color: #00c180;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #00c180;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #00c180;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+a:active {
+  color: #00c180;
+  background-color: transparent;
+  text-decoration: underline;
+}
+</style>
