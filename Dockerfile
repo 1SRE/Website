@@ -1,18 +1,18 @@
-FROM node:16.20.0
+FROM node:16.19.1-alpine
 
-RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
+
+COPY . .
 
 RUN apk update && apk upgrade
 RUN apk add git
 
-COPY . /usr/src/app
-RUN npm install
-RUN npm run build
+RUN npm install && \
+    npm run build && \
+    ls -l
 
 EXPOSE 3000
 
-ENV NUXT_HOST=localhost
-ENV NUXT_PORT=3000
+RUN npm run build
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]

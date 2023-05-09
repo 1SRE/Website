@@ -48,7 +48,7 @@ export default {
           object["title"] == this.article + "!"
         ) {
           if (object["type"] == "article") {
-            var converter = new showdown.Converter();
+            var converter = new showdown.Converter({tables: true});
             return (document.getElementById("articleText").innerHTML =
               converter.makeHtml(object["text"]));
           }
