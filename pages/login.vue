@@ -13,7 +13,7 @@
                 <v-text-field
                   prepend-icon="mdi-account-circle"
                   name="username"
-                  label="username"
+                  label="Username"
                   type="text"
                   v-model="userInfo.username"
                 ></v-text-field>
@@ -28,7 +28,7 @@
             </v-card-text>
             <v-card-subtitle><center><a id="createAccountTXT" href="/register">Don't have an account?</a></center></v-card-subtitle>
             <v-card-actions>
-              <v-btn block color="success" v-on:click="loginUser(userInfo)">Login</v-btn>
+              <v-btn block color="success" v-on:keyup.enter="loginUser()" v-on:click="loginUser()">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -49,17 +49,20 @@ export default {
   data() {
     return {
       userInfo: {
-        username: "nishipoo",
-        password: "asdfj@!(jfK!@",
+        username: "",
+        password: "",
       },
     };
   },
   methods: {
-    async loginUser(userInfo) {
+    async loginUser() {
         try {
-          let response = await this.$auth.loginWith('local', {data: this.userInfo})
-          if (response["status"] === 200) this.$auth.setUser("asdasd")
-          console.log(response)
+          await this.$auth.loginWith('local', {data: {username: this.userInfo["username"], password: this.userInfo["password"]}}).then((data) => {
+            const response = data
+            this.$auth.setUser({user: this.userInfo["username"]})
+            this.$auth.setUserToken(response.data["key"])
+            this.$auth.loggedIn = true
+          })
         } catch (err) {
           console.log(err)
         }

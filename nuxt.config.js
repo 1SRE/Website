@@ -62,18 +62,18 @@ export default {
           property: 'token',
           global: true,
           required: true,
-          type: 'Bearer'
+          type: ''
         },
         user: {
           property: 'user',
-          autoFetch: true
+          autoFetch: false
         },
         endpoints: {
-          login: { url: '/dj-rest-auth/login/', method: 'post' },
+          login: { url: '/dj-rest-auth/login/', method: 'post', propertyName: 'key' },
           logout: { url: '/dj-rest-auth/logout/', method: 'post' },
-          user: { url: '/dj-rest-auth/user/', method: 'get' }
+          user: false
         }
-      }
+      },
     }
   },
 

@@ -13,13 +13,32 @@
       </nuxt-link>
       <v-spacer />
       <v-toolbar-items>
-        <v-btn text color="red" href="https://discord.gg/7Jv879QhKM"
-          >Discord</v-btn
-        >
-        <v-btn text to="manual">Manual</v-btn>
+        <v-menu class="dropdown" open-on-hover offset-y>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn text v-if="$auth.loggedIn" v-bind="attrs" v-on="on">USERNAME GOES HERE</v-btn>
+            <v-btn text v-else v-bind="attrs" v-on="on" color="white">Info</v-btn>
+          </template>
 
-        <v-btn v-if="$auth.loggedIn" text to="logout">{{ $auth.user.email }}</v-btn>
-        <v-btn v-else text to="login" color="success">Login</v-btn>
+          <v-list class="pa-6">
+            <v-list-item>
+              <v-row v-if="$auth.loggedIn">
+                <v-list-item href="/dashboard">Dashboard</v-list-item>
+                <v-list-item href="/manual">Manual</v-list-item>
+                <v-list-item href="https://discord.gg/7Jv879QhKM">Discord</v-list-item>
+                <v-list-item href="/settings">Settings</v-list-item>
+                <v-list-item @click="logout()">Log out</v-list-item>
+              </v-row>
+              <v-row v-else>
+                <v-list-item href="/manual">Manual</v-list-item>
+                <v-list-item href="/login">Login</v-list-item>
+                <v-list-item href="/register">Sign Up</v-list-item>
+                <v-list-item href="https://discord.gg/7Jv879QhKM">Discord</v-list-item>
+              </v-row>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+
+        <!-- <v-btn v-else text href="/login" color="success">Login</v-btn> -->
       </v-toolbar-items>
     </v-app-bar>
     <v-main>
@@ -40,6 +59,15 @@ export default {
   name: "DefaultLayout",
   data() {
     return {};
+  },
+  methods: {
+    async logout() {
+      try {
+        await this.$auth.logout();
+      } catch (err) {
+        console.log(err);
+      }
+    },
   },
 };
 </script>

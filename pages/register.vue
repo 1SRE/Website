@@ -13,14 +13,14 @@
                 <v-text-field
                   prepend-icon="mdi-email"
                   name="email"
-                  label="email"
+                  label="Email"
                   type="text"
                   v-model="userInfo.email"
                 ></v-text-field>
                 <v-text-field
                   prepend-icon="mdi-account-circle"
                   name="username"
-                  label="username"
+                  label="Username"
                   type="text"
                   v-model="userInfo.username"
                 ></v-text-field>
@@ -34,7 +34,7 @@
                 <v-text-field
                   prepend-icon="mdi-lock"
                   name="password"
-                  label="Password"
+                  label="Retype password"
                   type="password"
                   v-model="userInfo.password2"
                 ></v-text-field>
@@ -43,7 +43,7 @@
             <v-card-subtitle><center><a id="loginAccountTXT" href="/login">Already signed up?</a></center></v-card-subtitle>
 
             <v-card-actions>
-              <v-btn block color="error" v-on:click="registerUser(userInfo)">Register</v-btn>
+              <v-btn block color="error" type="submit" v-on:keyup.enter="registerUser()" v-on:click="registerUser()">Register</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -60,19 +60,24 @@ export default {
   data() {
     return {
       userInfo: {
-        username: "nishipoo",
-        email: "someEmail@gmail.com",
-        password1: "asdfj@!(jfK!@",
-        password2: "asdfj@!(jfK!@",
+        username: "",
+        email: "",
+        password1: "",
+        password2: "",
       },
     };
   },
   methods: {
-    async registerUser(userInfo) {
+    async registerUser() {
         try {
-          let response = await this.$auth.loginWith('local', {data: this.userInfo})
-          if (response["status"] === 200) this.$auth.setUser("asdasd")
-          console.log(response)
+          await this.$axios.post('dj-rest-auth/registration/', {username: this.userInfo["username"], email: this.userInfo["email"], password1: this.userInfo["password1"], password2: this.userInfo["password2"]})
+          await this.$auth.loginWith('local', {data: {username: this.userInfo["username"], email: this.userInfo["email"], password: this.userInfo["password1"]}}).then((data) => {
+            const response = data
+            this.$auth.setUser({user: this.userInfo["username"]})
+            this.$auth.setUserToken(response.data["key"])
+            this.$auth.loggedIn = true
+          })
+          console.log(this.$auth)
         } catch (err) {
           console.log(err)
         }
